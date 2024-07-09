@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+
+    
+<head>
+
+        <meta charset="utf-8" />
+        <title>{% block title %} Dashboard | FlexFlow  {% endblock %} </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{asset('back-office/images/favicon.ico')}}">
+        
+
+        {% block css %}
+        <!-- Bootstrap Css -->
+        <link href="{{asset('back-office/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{{asset('back-office/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{{asset('back-office/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('css/chart.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+        {% endblock %}
+
+    </head>
+
+    
+    <body>
+
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="{{asset('back-office/images/logo-sm.png')}}" alt="" height="22">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{{asset('back-office/images/logo-light.png')}}" alt="" height="20">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+
+                        <!-- App Search-->
+                        <form class="app-search d-none d-lg-block">
+                            <div class="position-relative">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="fas fa-search"></span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-search-dropdown">
+                    
+                                <form class="p-3">
+                                    <div class="m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+
+                        
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="{{asset('uploads/users/' ~app.user.image)}}" >
+                                    
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">{{app.user.nom}}</span>
+                                <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="{{ path('admin_profile') }}"><i class="far fa-user-circle font-size-18 align-middle text-muted me-1"></i> <span class="align-middle">View Profile</span></a>
+                                <a class="dropdown-item" href="#"><i class="uil uil-lock-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">Lock screen</span></a>
+                                <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">Sign out</span></a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                        </div>
+            
+                    </div>
+                </div>
+            </header>
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <!-- LOGO -->
+                <div class="navbar-brand-box">
+                    <a href="index.html" class="logo logo-dark">
+                        <span class="logo-sm">
+                            <img src="{{asset('back-office/images/logo-sm.png')}}" alt="" height="22">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="{{asset('back-office/images/logo-dark.png')}}" alt="" height="20">
+                        </span>
+                    </a>
+
+                    <a href="index.html" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="{{asset('back-office/images/logo-sm.png')}}" alt="" height="22">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="{{asset('back-office/images/logo-light.png')}}" alt="" height="20">
+                        </span>
+                    </a>
+                </div>
+
+                <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
+                    <i class="fa fa-fw fa-bars"></i>
+                </button>
+
+                <div data-simplebar class="sidebar-menu-scroll">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                        {% if app.user.getRoles()[0]=="ADMIN" %}
+                            <li class="menu-title">Home</li>
+
+                            <li>
+                                <a href="{{ path('admin_dashboard') }}">
+                                    <i class="dripicons-home"></i><span class="badge rounded-pill bg-primary float-end">01</span>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-title">Users</li>
+
+                            <li>
+                                    <li>
+                                        <a href="javascript: void(0);" >
+                                        <i class="dripicons-trophy"></i>
+                                        <span>Coaches</span>
+                                        <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+                                        </a>
+                                        <ul class="sub-menu" aria-expanded="true">
+                                            <li><a href="{{ path('liste_coaches') }}">Listes des coaches</a></li>
+                                            <li><a href="{{ path('add_coach') }}">Ajouter un coach</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="javascript: void(0);">
+                                        <i class="dripicons-user-group"></i>
+                                        <span>Membres</span>
+                                        <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+                                        </a>
+                                        <ul class="sub-menu" aria-expanded="true">
+                                            <li><a href="{{ path('liste_membres') }}">Listes des membres</a></li>
+                                        </ul>
+                                    </li>
+                                {# </ul> #}
+                            </li>
+                          {% else %}
+                                           
+                             {% endif  %} 
+                         {% if app.user.getRoles()[0]=="ADMIN" %}
+                            <li class="menu-title">Pages</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="dripicons-hourglass"></i>
+                                    <span>Evenements</span>
+                                    <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+                                </a>
+                                 <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ path('evenements_list') }}"> Liste evenement</a></li>
+                                    <li><a href="{{ path('ajouter_evenement') }}">Ajouter evenement</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="dripicons-calendar"></i>
+                                    <span>Calender</span>
+                                    <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a  href="{{ path('calendar_events') }}"> Coming soon</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class=" waves-effect">
+                                    <i class="dripicons-lifting"></i>
+                                    <span>Cours</span>
+                                    <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ path('cour_liste') }}"> List des cours</a></li>
+                                    <li><a href="{{ path('cour_ajouter') }}">Ajouter un cour</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect" >
+                                    <i class="dripicons-rocket"></i>
+                                    <span>Coaching privé</span>
+                                <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{path('app_interface_admin')}}">Consulter offres</a></li>
+                                </ul>
+                            </li>
+
+                            
+                            <li class="menu-title">Apps</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class=" waves-effect" >
+                                    <i class="dripicons-store"></i>
+                                    <span>Store</span>
+                                    <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+                                </a>
+                                
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="ecommerce-products.html">Produits</a></li>
+                                    <li><a href="ecommerce-orders.html">Commande</a></li>
+                                    <li><a href="ecommerce-add-product.html">Ajouter produit</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a  href="javascript: void(0);" class=" waves-effect">
+                                    <i class="dripicons-broadcast"></i>
+                                    <span>Reclamation</span>
+                                 <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+                                </a>
+                                 <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{path('app_reclamation_index')}}">Listes</a></li>
+                                    <li><a href="{{path('app_reponse_index_admin')}}">Responses</a></li>
+                                </ul>
+                            </li>
+
+                           
+                           {% else %}
+                           <li class="menu-title">Home</li>
+
+                            <li>
+                                <a href="{{ path('coach_dashboard') }}">
+                                    <i class="dripicons-home"></i><span class="badge rounded-pill bg-primary float-end">01</span>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>          
+                            
+                            <li class="menu-title">Pages</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="dripicons-hourglass"></i>
+                                    <span>Evenements</span>
+                                    <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+                                </a>
+                                 <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="invoices-list.html"> Liste evenement</a></li>
+                                    <li><a href="invoices-detail.html">Ajouter evenement</a></li>
+                                </ul>
+                            </li>
+                            
+                             <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="dripicons-calendar"></i>
+                                    <span>Calender</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class=" waves-effect">
+                                    <i class="dripicons-lifting"></i>
+                                    <span>Cours</span>
+                                    <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="invoices-list.html"> List des cours</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect" >
+                                    <i class="dripicons-rocket"></i>
+                                    <span>Coaching privé</span>
+                                <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{path('app_form_offre')}}">Ajouter offre</a></li>
+                                    <li><a href="{{path('app_accrefdemande')}}">Traiter offre</a></li>
+                                    <li><a href="{{path('app_statistics')}}">Statistique</a></li>
+                                </ul>
+                            </li>
+ 
+                            <li class="menu-title">Apps</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class=" waves-effect" >
+                                    <i class="dripicons-store"></i>
+                                    <span>Store</span>
+                                    <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+                                </a>
+                                
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="ecommerce-products.html">Produits</a></li>
+                                    <li><a href="ecommerce-orders.html">Commande</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a  href="javascript: void(0);" class=" waves-effect">
+                                    <i class="dripicons-broadcast"></i>
+                                    <span>Reclamation</span>
+                                 <i class="dripicons-chevron-down d-none d-xl-inline-block font-size-15 float-end  waves-effect"></i>
+                                </a>
+                                 <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="email-inbox.html">Listes</a></li>
+                                    <li><a href="email-read.html">Responses</a></li>
+                                </ul>
+                            </li>           
+                           {% endif  %} 
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            
+<!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+
+                    <!-- start container-fluid -->
+                    {% block body %}
+                    {# <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h4 class="mb-0">Dashboard</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">FlexFlow</a></li>
+                                            <li class="breadcrumb-item active">Dashboard</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+
+                    </div> <!--end container-fluid --> #}
+                    {% endblock %}
+                </div>
+                <!-- End Page-content -->
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                2024 © FlexFlow.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Crafted with <i class="mdi mdi-heart text-danger"></i> by <a href="https://1.envato.market/themesdesign" target="_blank" class="text-reset">Themesdesign</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- JAVASCRIPT -->
+        {% block javascript %}
+        <script src="{{asset('back-office/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('back-office/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('back-office/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{asset('back-office/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{asset('back-office/libs/node-waves/waves.min.js')}}"></script>
+        <script src="{{asset('back-office/libs/waypoints/lib/jquery.waypoints.min.js')}}"></script>
+        <script src="{{asset('back-office/libs/jquery.counterup/jquery.counterup.min.js')}}"></script>
+        <script src="{{ asset('js/chart.js') }}"></script>
+
+        <script src="{{asset('back-office/js/pages/dashboard.init.js')}}"></script>
+
+        <!--calendar-->
+        <script src="{{asset('back-office/js/pages/calendar.init.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+<!-- apexcharts zedthom ena bch icone mtaa chart temchi 2 lignes-->
+        <script src="{{asset('back-office/libs/apexcharts/apexcharts.min.js')}}"></script>
+        <script src="{{asset('back-office/js/pages/dashboard.init.js')}}"></script>
+
+        <!-- App js -->
+        <script src="{{asset('back-office/js/app.js')}}"></script>
+       {% endblock %}
+    </body>
+
+
+</html>

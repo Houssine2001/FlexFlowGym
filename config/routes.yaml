@@ -1,0 +1,15 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+app_reponse_index_admin:
+    path: /reponse_admin
+    controller: App\Controller\ReponseController::indexAdmin
+
+Evenement_modifier:
+    path: '/admin/modifier/{id}'
+    controller: 'App\Controller\EvenementController::modifier'
+    methods: ['GET', 'POST']# config/routes.yaml
+# config/routes.yaml
+run_object_recognition:
+    path: /run_object_recognition
+    controller: App\Controller\ProduitController::runObjectRecognition
